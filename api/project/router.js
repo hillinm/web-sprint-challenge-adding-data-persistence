@@ -41,3 +41,5 @@ router.post('/', (req, res) => {
         res.status(404).json({message: 'a valid name and description is required'})
     }
 })
+
+module.exports = router;

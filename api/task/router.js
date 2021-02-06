@@ -39,3 +39,5 @@ router.post('/', (req, res) => {
         res.status(500).json({message: 'failed to add resource to database'})
     });
 });
+
+module.exports = router;
