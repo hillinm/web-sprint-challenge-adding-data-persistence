@@ -50,28 +50,28 @@ A **resource assignment** connects a resource and a project, and is stored in a 
 
 Your finished project must meet all of the following requirements:
 
-- [ ] Design the data model and use knex migrations to create the database and tables.
-- [ ] Build an API inside the `api` folder with endpoints for:
+- [X] Design the data model and use knex migrations to create the database and tables.
+- [X] Build an API inside the `api` folder with endpoints for:
 
-  - [ ] `[POST] /api/resources`
+  - [X] `[POST] /api/resources`
     - Example of response body: `{"resource_id":1,"resource_name":"foo","resource_description":null}`
 
-  - [ ] `[GET] /api/resources`
+  - [X] `[GET] /api/resources`
     - Example of response body: `[{"resource_id":1,"resource_name":"foo","resource_description":null}]`
 
-  - [ ] `[POST] /api/projects`
+  - [X] `[POST] /api/projects`
     - Even though `project_completed` is stored as an integer, the API uses booleans when interacting with the client
     - Example of response body: `{"project_id":1,"project_name":"bar","project_description":null,"project_completed":false}`
 
-  - [ ] `[GET] /api/projects`
+  - [X] `[GET] /api/projects`
     - Even though `project_completed` is stored as an integer, the API uses booleans when interacting with the client
     - Example of response body: `[{"project_id":1,"project_name":"bar","project_description":null,"project_completed":false}]`
 
-  - [ ] `[POST] /api/tasks`
+  - [X] `[POST] /api/tasks`
     - Even though `task_completed` is stored as an integer, the API uses booleans when interacting with the client
     - Example of response body: `{"task_id":1,"task_description":"baz","task_notes":null,"task_completed":false,"project_id:1}`
 
-  - [ ] `[GET] /api/tasks`
+  - [X] `[GET] /api/tasks`
     - Even though `task_completed` is stored as an integer, the API uses booleans when interacting with the client
     - Each task must include `project_name` and `project_description`
     - Example of response body: `[{"task_id":1,"task_description":"baz","task_notes":null,"task_completed":false,"project_name:"bar","project_description":null}]`
