@@ -29,8 +29,8 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const project = req.body;
-    if (project.name && project.description) {
-        Projects.insert(req.body)
+    if (project.project_name && project.project_description) {
+        Projects.insert(project)
         .then(project => {
             res.status(200).json(project)
         })
