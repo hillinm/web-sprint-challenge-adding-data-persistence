@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const taskData = req.body;
-
+    console.log(taskData)
     Resources.addTask(taskData)
     .then(task => {
         res.status(200).json(task);
