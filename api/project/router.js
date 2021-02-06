@@ -29,17 +29,14 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     const project = req.body;
-    if (project.project_name && project.project_description) {
-        Projects.insert(project)
-        .then(project => {
-            res.status(200).json(project)
-        })
-        .catch(() => {
-            res.status(500).json({message: 'failed to add project'})
-        })
-    } else {
-        res.status(404).json({message: 'a valid name and description is required'})
-    }
-})
+
+    Projects.addProject(project)
+    .then(resource => {
+        res.status(200).json(resource);
+    })
+    .catch(() => {
+        res.status(500).json({message: 'failed to add resource to database'})
+    });
+});
 
 module.exports = router;
