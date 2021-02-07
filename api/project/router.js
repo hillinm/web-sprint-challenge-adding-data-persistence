@@ -2,14 +2,11 @@ const express = require('express');
 const Projects = require('./model.js');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    Projects.find()
-    .then(projects => {
-        res.status(200).json(projects)
-    })
-    .catch(() => {
-        res.status(500).json({message: 'failed to get project'})
-    });
+const Middleware = require('../middleware/middleware.js');
+
+router.get('/', Middleware.IntToBoolean(Projects, "project_completed", "get"), (req, res) => {
+    const { newObject } = req;
+    res.status(200).json(newObject)
 });
 
 router.get('/:id', (req, res) => {
@@ -27,16 +24,9 @@ router.get('/:id', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
-    const project = req.body;
-
-    Projects.addProject(project)
-    .then(resource => {
-        res.status(200).json(resource);
-    })
-    .catch(() => {
-        res.status(500).json({message: 'failed to add resource to database'})
-    });
+router.post('/', Middleware.IntToBoolean(Projects, "project_completed", "post"), (req, res) => {
+    const { newObject } = req;
+    res.status(200).json(newObject[0])
 });
 
 module.exports = router;

@@ -1,21 +1,18 @@
 // build your `/api/tasks` router here
 const express = require('express');
-const Resources = require('./model.js');
+const Tasks = require('./model.js');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    Resources.find()
-    .then(tasks => {
-        res.status(200).json(tasks)
-    })
-    .catch(() => {
-        res.status(500).json({message: 'failed to get tasks'})
-    });
+const Middleware = require('../middleware/middleware.js');
+
+router.get('/', Middleware.IntToBoolean(Tasks, "task_completed", "get"), (req, res) => {
+    const { newObject } = req;
+    res.status(200).json(newObject)
 });
 
 router.get('/:id', (req, res) => {
     const { id } = req.params;
-    Resources.findById(id)
+    Tasks.findById(id)
     .then(task => {
         if (task) {
             res.status(200).json(task)
@@ -28,16 +25,9 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-    const taskData = req.body;
-    console.log(taskData)
-    Resources.addTask(taskData)
-    .then(task => {
-        res.status(200).json(task);
-    })
-    .catch(() => {
-        res.status(500).json({message: 'failed to add resource to database'})
-    });
+router.post('/', Middleware.IntToBoolean(Tasks, "task_completed", "post"), (req, res) => {
+    const { newObject } = req;
+    res.status(200).json(newObject[0])
 });
 
 module.exports = router;
